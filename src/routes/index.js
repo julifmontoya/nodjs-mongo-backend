@@ -1,11 +1,11 @@
 const { Router } = require("express");
-const Article = require("../controllers/hotel");
+const Hotel = require("../controllers/hotel");
 const router = Router();
 
-router.post("/hotels/", Article.create)
-router.get("/hotels/", Article.findAll);
-router.get("/hotels/:id", Article.findOne);
-router.put("/hotels/:id", Article.findOneUpate);
-router.delete("/hotels/:id", Article.delete);
+router.post("/hotels/", Hotel.create)
+router.get("/hotels/", Hotel.findAll);
+router.get("/hotels/:id", Hotel.findOne);
+router.put("/hotels/:id", Hotel.findOneUpate);
+router.delete("/hotels/:id", Hotel.delete);
 
 module.exports = router;
