@@ -71,10 +71,6 @@ let controller = {
         res.status(200).jsonp(hotel);
       });
     });
-
-
-
-
   },
 
   delete: async (req, res) => {
