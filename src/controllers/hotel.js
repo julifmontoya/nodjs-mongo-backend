@@ -6,7 +6,7 @@ let controller = {
     try {
       const newHotel = new Hotel({
         name: req.body.name,
-        description:req.body.description,
+        description: req.body.description,
         check_in: req.body.check_in,
         check_out: req.body.check_out,
         num_rooms: req.body.num_rooms,
@@ -55,37 +55,26 @@ let controller = {
   },
 
   findOneUpate: async (req, res) => {
-    try {
-      Hotel.findByIdAndUpdate(
-        { _id: req.params.id },
-        {
-          name: req.body.name,
-          description:req.body.description,
-          check_in: req.body.check_in,
-          check_out: req.body.check_out,
-          num_rooms: req.body.num_rooms,
-          stars: req.body.stars,
-          address: req.body.address,
-          latitude: req.body.latitude,
-          longitude: req.body.longitude
-        })
-      res.json({
-        name: req.body.name,
-        description:req.body.description,
-        check_in: req.body.check_in,
-        check_out: req.body.check_out,
-        num_rooms: req.body.num_rooms,
-        stars: req.body.stars,
-        address: req.body.address,
-        latitude: req.body.latitude,
-        longitude: req.body.longitude
-      })
-    }
-    catch (error) {
-      res.status(500).json({
-        message: error.message || "Something goes wrong"
-      })
-    }
+    Hotel.findById(req.params.id, function (err, hotel) {
+      hotel.name = req.body.name;
+      hotel.description = req.body.description;
+      hotel.check_in = req.body.check_in;
+      hotel.check_out = req.body.check_out;
+      hotel.num_rooms = req.body.num_rooms;
+      hotel.stars = req.body.stars;
+      hotel.address = req.body.address;
+      hotel.latitude = req.body.latitude;
+      hotel.longitude = req.body.longitude;
+
+      hotel.save(function (err) {
+        if (err) return res.status(500).send(err.message);
+        res.status(200).jsonp(hotel);
+      });
+    });
+
+
+
+
   },
 
   delete: async (req, res) => {

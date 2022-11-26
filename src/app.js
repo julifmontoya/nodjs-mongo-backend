@@ -9,7 +9,8 @@ app.set("port", process.env.PORT);
 app.use(express.json())
 
 // Middleware
-
+const cors =require('cors')
+app.use(cors())
 
 // Routes
 app.get("/", (req, res) => {
