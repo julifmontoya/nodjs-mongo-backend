@@ -55,7 +55,7 @@ let controller = {
   },
 
   findOneUpate: async (req, res) => {
-    Hotel.findById(req.params.id, function (err, hotel) {
+    Hotel.findById(req.params.id, (err, hotel)=> {
       hotel.name = req.body.name;
       hotel.description = req.body.description;
       hotel.check_in = req.body.check_in;
@@ -66,7 +66,7 @@ let controller = {
       hotel.latitude = req.body.latitude;
       hotel.longitude = req.body.longitude;
 
-      hotel.save(function (err) {
+      hotel.save((err)=> {
         if (err) return res.status(500).send(err.message);
         res.status(200).jsonp(hotel);
       });
